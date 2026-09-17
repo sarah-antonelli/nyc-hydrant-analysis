@@ -1,0 +1,12 @@
+# Raw source data
+data/raw/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Python virtual environment
+.venv/
+
+# Python cache
+__pycache__/
+*.pyc
