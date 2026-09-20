@@ -3,19 +3,19 @@
 -- Portfolio Project 2, Modern GIS Accelerator
 --
 -- Five progressive PostGIS queries that build up to a normalized density
--- analysis and a 100-meter coverage analysis.
+-- analysis and a 100-ft coverage analysis.
 --
 -- Assumes:
---   - Database "nyc" with PostGIS extension enabled
+--   - Database "gis" with PostGIS extension enabled
 --   - Tables loaded:
---       nyc_neighborhoods (polygon, EPSG:4326, geom column called "geom",
---                          attributes including "neighborhood" and "borough")
---       nyc_hydrants      (point,   EPSG:4326, geom column called "geom",
---                          attributes including "hydrant_id")
+--       nyc_neighborhoods (polygon, EPSG:4326, geom column called "wkb_geometry",
+--                          attributes including "ntaname" and "boroname")
+--       nyc_hydrants      (point,   EPSG:4326, geom column called "wkb_geometry",
+--                          attributes including "gid")
 --   - Spatial indexes on both geom columns (CREATE INDEX ... USING GIST (geom))
 --
 -- Run all queries:
---   psql -h localhost -U gisuser -d nyc -f analysis.sql
+--   psql -h localhost -U gis -d gis -f analysis.sql
 -- =============================================================================
 
 
@@ -41,7 +41,7 @@ ORDER BY ntaname;
 
 SELECT h.gid, n.ntaname, n.boroname
 FROM nyc_hydrants h, nyc_neighborhoods n
-WHERE ST_Contains(n.wkb_geometry, h.wkb_geometry)
+WHERE ST_Contains(n.wkb_geometry, h.wkb_geometry);
 
 -- -----------------------------------------------------------------------------
 -- Query 3: Aggregate
