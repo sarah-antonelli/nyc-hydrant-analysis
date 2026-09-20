@@ -34,7 +34,7 @@ Both pipelines produce the same density values to within rounding. The Python ve
   3. The Evergreens Cemetery
   4. Fort Wadsworth
   5. Shirley Chisholm State Park
-- Median neighborhood has 165.5 hydrants per km² and 43% of its area lies is within 100ft of a hydrant.
+- Median neighborhood has 165.5 hydrants per km² and 43% of its area lies within 100ft of a hydrant.
 
 ![NYC hydrant density choropleth](images/density_choropleth.png)
 
