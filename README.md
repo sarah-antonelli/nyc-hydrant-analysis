@@ -38,6 +38,8 @@ Both pipelines produce the same density values to within rounding. The Python ve
 
 ![NYC hydrant density choropleth](images/density_choropleth.png)
 
+![NYC hydrant density interactive map screenshot](images/hydrant_density_interactive_map.png)
+
 ## How to run it
 
 Requires Docker (for PostGIS) and Python 3.11+ with GeoPandas.
@@ -46,7 +48,7 @@ Requires Docker (for PostGIS) and Python 3.11+ with GeoPandas.
 git clone https://github.com/{your-username}/nyc-hydrant-analysis.git
 cd nyc-hydrant-analysis
 
-# Start the PostGIS template (copy from R2.4 docker-templates/postgis/)
+# Start the PostGIS template
 docker compose -f docker/postgis/docker-compose.yml up -d
 
 # Load NYC Open Data into PostGIS (your script of choice)
@@ -60,6 +62,8 @@ jupyter lab analysis.ipynb
 ## What I learned
 
 The progressive queries were helpful in understanding how to build out the logic beneath a research question. The parallel pipelines in two different systems facilitated a more complete understanding of when to work in a psql session within PostGIS versus writing queries in a .sql file versus GeoPandas and Python. The next time I apply these skills, I will feel more confident about which environments I need to spin up to best explore, analyze, and visualize the data.
+
+The density results were effectively identical between SQL/PostGIS and Python/GeoPandas. Coverage percentages differed by approximately 0.2 percentage points in many neighborhoods, likely due to small differences in geometry union and intersection operations between the two processing pipelines. The ranking and overall analytical conclusions remained consistent.
 
 The prompt for the exercise requested a 100m buffer but uses EPSG:2263 which is in US survey feet, so the provided query creates a 100 ft buffer. When I converted to a true 100 m buffer (328.08 ft), the resulting coverage percentages became essentially 100% for all neighborhoods, suggesting hydrant density in NYC is sufficient for complete coverage at that radius. 
 
